@@ -13,16 +13,16 @@ Firstly, we need to convert image from BGR color scheme to RGB. We do it using *
 Resize image to 700x700 to have standardized representation of image  
 To remove noise and redundant details from image we will use **cv2.GaussianBlur()** function with kernel size 5x5 and zero standard deviation  
 After that we will convert image to HSV color scheme. At this point image will look like this:  
-![alt text](https://i.ibb.co/fStzj4m/img-blur-hsv.jpg)  
+![alt text](https://i.imgur.com/n74QN3Z.jpg)  
 
 ### Second step: Applying masks  
 We need to distinguish apple from the rest of the image, so that we will use masks.  
 We will filter image by color and then by brightness using **cv2.inRange()** function, after that masks will be combined:  
-![alt text](https://i.ibb.co/YjkfqBn/mask.jpg)  
+![alt text](https://i.imgur.com/Azt7K01.jpg)  
 ### Third step: Perform morphological operations and find apple contour in the image  
 Create ellipse shaped kernel of size 15x15 using **cv2.getStructuringElement()** function.  
 Perform closing and then opening operations using **cv2.morphologyEx()** with kernel specified above to remove noise and to close small holes inside foreground object.  
-![alt text](https://i.ibb.co/rcXmfT5/mask-clean.jpg)
+![alt text](https://i.imgur.com/hDvPN58.jpg)
 
 After having preprocessed mask find contours with **cv2.findContours()** and then detect the biggest one.  
 As we found contours, we can combine contour, mask and original image.  
